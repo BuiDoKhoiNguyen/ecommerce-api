@@ -35,7 +35,7 @@ public class Product {
     private double discountedPrice;
 
     @Column(name = "discounted_persent")
-    private double discountedPercent;
+    private double discountPercent;
 
     @Column(name = "quantity")
     private int quantity;
@@ -46,7 +46,6 @@ public class Product {
     @Column(name = "color")
     private String color;
 
-    @Embedded
     @ElementCollection
     @Column(name = "sizes")
     private Set<Size> sizes = new HashSet<>();
@@ -78,7 +77,7 @@ public class Product {
         this.description = description;
         this.price = price;
         this.discountedPrice = discountedPrice;
-        this.discountedPercent = discountedPersent;
+        this.discountPercent = discountedPersent;
         this.quantity = quantity;
         this.brand = brand;
         this.color = color;
@@ -131,12 +130,12 @@ public class Product {
         this.discountedPrice = discountedPrice;
     }
 
-    public double getDiscountedPersent() {
-        return discountedPercent;
+    public double getDiscountPercent() {
+        return discountPercent;
     }
 
-    public void setDiscountedPersent(double discountedPersent) {
-        this.discountedPercent = discountedPersent;
+    public void setDiscountPercent(double discountedPersent) {
+        this.discountPercent = discountedPersent;
     }
 
     public int getQuantity() {

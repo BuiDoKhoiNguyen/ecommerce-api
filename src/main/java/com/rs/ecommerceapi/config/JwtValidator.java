@@ -17,7 +17,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.crypto.SecretKey;
 import java.io.IOException;
-import java.security.SignatureException;
 import java.util.List;
 
 public class JwtValidator extends OncePerRequestFilter {

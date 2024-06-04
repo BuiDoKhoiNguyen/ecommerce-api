@@ -11,14 +11,15 @@ import java.util.Date;
 
 @Service
 public class JwtProvider {
-    SecretKey  key = Keys.hmacShaKeyFor(JwtConstant.SECRET_KEY.getBytes());
+    SecretKey key = Keys.hmacShaKeyFor(JwtConstant.SECRET_KEY.getBytes());
 
     public String genrateToken(Authentication auth){
-         return Jwts.builder()
+         String jwt = Jwts.builder()
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(new Date().getTime()+846000000))
                 .claim("email",auth.getName())
                 .signWith(key).compact();
+         return jwt;
     }
 
     public String getEmailFromToken(String jwt){

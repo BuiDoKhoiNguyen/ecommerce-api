@@ -2,12 +2,14 @@ package com.rs.ecommerceapi.controller;
 
 import com.rs.ecommerceapi.config.JwtProvider;
 import com.rs.ecommerceapi.exception.UserException;
+import com.rs.ecommerceapi.model.Cart;
 import com.rs.ecommerceapi.model.User;
 import com.rs.ecommerceapi.repository.UserRepository;
 import com.rs.ecommerceapi.request.LoginRequest;
 import com.rs.ecommerceapi.response.AuthResponse;
-import com.rs.ecommerceapi.service.CustomeUserServiceImpl;
-import io.netty.handler.codec.socks.SocksAuthResponse;
+import com.rs.ecommerceapi.service.CartService;
+import com.rs.ecommerceapi.service.CustomUserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -24,16 +26,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
-    private UserRepository userRepository;
-    private JwtProvider jwtProvider;
-    private PasswordEncoder passwordEncoder;
-    private CustomeUserServiceImpl customeUserServiceImpl;
+    private final UserRepository userRepository;
+    private final JwtProvider jwtProvider;
+    private final PasswordEncoder passwordEncoder;
+    private final CustomUserServiceImpl customUserServiceImpl;
+    private final CartService cartService;
 
-    public AuthController(UserRepository userRepository, CustomeUserServiceImpl customeUserServiceImpl, PasswordEncoder passwordEncoder, JwtProvider jwtProvider) {
+    @Autowired
+    public AuthController(UserRepository userRepository, CustomUserServiceImpl customUserServiceImpl, PasswordEncoder passwordEncoder, JwtProvider jwtProvider, CartService cartService) {
         this.userRepository = userRepository;
-        this.customeUserServiceImpl = customeUserServiceImpl;
+        this.customUserServiceImpl = customUserServiceImpl;
         this.passwordEncoder = passwordEncoder;
         this.jwtProvider = jwtProvider;
+        this.cartService = cartService;
     }
 
     @PostMapping("/signup")
@@ -50,13 +55,14 @@ public class AuthController {
 
         User createdUser = new User();
         createdUser.setEmail(email);
-        createdUser.setPassword(password);
+        createdUser.setPassword(passwordEncoder.encode(password));
         createdUser.setFirstName(firstName);
         createdUser.setLastName(lastName);
 
         User savedUser = userRepository.save(createdUser);
+        Cart cart = cartService.createCart(savedUser);
 
-        Authentication authentication = new UsernamePasswordAuthenticationToken(email, password);
+        Authentication authentication = new UsernamePasswordAuthenticationToken(savedUser.getEmail(),savedUser.getPassword());
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String token = jwtProvider.genrateToken(authentication);
@@ -78,13 +84,15 @@ public class AuthController {
 
         String token = jwtProvider.genrateToken(authentication);
 
-        AuthResponse authResponse = new AuthResponse(token, "Login successfully");
+        AuthResponse authResponse = new AuthResponse();
+        authResponse.setJwt(token);
+        authResponse.setMessage("Login successfully");
 
         return new ResponseEntity<AuthResponse>(authResponse, HttpStatus.CREATED);
     }
 
     private Authentication authenticate(String username, String password) {
-        UserDetails userDetails = customeUserServiceImpl.loadUserByUsername(username);
+        UserDetails userDetails = customUserServiceImpl.loadUserByUsername(username);
 
         if(userDetails == null) {
             throw new BadCredentialsException("Invalid Username");

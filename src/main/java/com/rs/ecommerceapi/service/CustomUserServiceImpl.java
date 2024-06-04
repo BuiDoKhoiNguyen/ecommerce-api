@@ -3,6 +3,7 @@ package com.rs.ecommerceapi.service;
 import com.rs.ecommerceapi.model.User;
 import com.rs.ecommerceapi.repository.UserRepository;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,10 +14,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CustomeUserServiceImpl implements UserDetailsService {
-    private UserRepository userRepository;
+public class CustomUserServiceImpl implements UserDetailsService {
+    private final UserRepository userRepository;
 
-    public CustomeUserServiceImpl(UserRepository userRepository) {
+    @Autowired
+    public CustomUserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 

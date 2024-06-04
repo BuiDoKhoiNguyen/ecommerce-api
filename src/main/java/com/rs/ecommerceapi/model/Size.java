@@ -1,8 +1,8 @@
 package com.rs.ecommerceapi.model;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.Embeddable;
 
-
+@Embeddable
 public class Size {
     private String name;
     private int quantity;
