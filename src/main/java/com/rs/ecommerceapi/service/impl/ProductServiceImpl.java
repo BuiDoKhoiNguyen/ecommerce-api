@@ -1,4 +1,4 @@
-package com.rs.ecommerceapi.service;
+package com.rs.ecommerceapi.service.impl;
 
 import com.rs.ecommerceapi.exception.ProductException;
 import com.rs.ecommerceapi.model.Category;
@@ -6,6 +6,8 @@ import com.rs.ecommerceapi.model.Product;
 import com.rs.ecommerceapi.repository.CategoryRepository;
 import com.rs.ecommerceapi.repository.ProductRepository;
 import com.rs.ecommerceapi.request.CreateProductRequest;
+import com.rs.ecommerceapi.service.ProductService;
+import com.rs.ecommerceapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;

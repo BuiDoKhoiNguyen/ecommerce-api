@@ -1,7 +1,8 @@
-package com.rs.ecommerceapi.service;
+package com.rs.ecommerceapi.service.impl;
 
 import com.rs.ecommerceapi.model.OrderItem;
 import com.rs.ecommerceapi.repository.OrderItemRepository;
+import com.rs.ecommerceapi.service.OrderItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

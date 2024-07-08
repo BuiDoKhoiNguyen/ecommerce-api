@@ -1,4 +1,4 @@
-package com.rs.ecommerceapi.service;
+package com.rs.ecommerceapi.service.impl;
 
 import com.rs.ecommerceapi.exception.OrderException;
 import com.rs.ecommerceapi.model.Address;
@@ -8,10 +8,12 @@ import com.rs.ecommerceapi.model.Order;
 import com.rs.ecommerceapi.model.OrderItem;
 import com.rs.ecommerceapi.model.User;
 import com.rs.ecommerceapi.repository.AddressRepository;
-import com.rs.ecommerceapi.repository.CartRepository;
 import com.rs.ecommerceapi.repository.OrderItemRepository;
 import com.rs.ecommerceapi.repository.OrderRepository;
 import com.rs.ecommerceapi.repository.UserRepository;
+import com.rs.ecommerceapi.service.CartService;
+import com.rs.ecommerceapi.service.OrderItemService;
+import com.rs.ecommerceapi.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

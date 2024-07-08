@@ -1,4 +1,4 @@
-package com.rs.ecommerceapi.service;
+package com.rs.ecommerceapi.service.impl;
 
 import com.rs.ecommerceapi.exception.ProductException;
 import com.rs.ecommerceapi.model.Cart;
@@ -7,6 +7,9 @@ import com.rs.ecommerceapi.model.Product;
 import com.rs.ecommerceapi.model.User;
 import com.rs.ecommerceapi.repository.CartRepository;
 import com.rs.ecommerceapi.request.AddItemRequest;
+import com.rs.ecommerceapi.service.CartItemService;
+import com.rs.ecommerceapi.service.CartService;
+import com.rs.ecommerceapi.service.ProductService;
 import org.springframework.stereotype.Service;
 
 @Service

@@ -1,4 +1,4 @@
-package com.rs.ecommerceapi.service;
+package com.rs.ecommerceapi.service.impl;
 
 import com.rs.ecommerceapi.exception.ProductException;
 import com.rs.ecommerceapi.model.Product;
@@ -7,6 +7,8 @@ import com.rs.ecommerceapi.model.User;
 import com.rs.ecommerceapi.repository.ProductRepository;
 import com.rs.ecommerceapi.repository.ReviewRepository;
 import com.rs.ecommerceapi.request.ReviewRequest;
+import com.rs.ecommerceapi.service.ProductService;
+import com.rs.ecommerceapi.service.ReviewService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

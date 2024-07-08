@@ -1,4 +1,4 @@
-package com.rs.ecommerceapi.service;
+package com.rs.ecommerceapi.service.impl;
 
 import com.rs.ecommerceapi.exception.CartItemException;
 import com.rs.ecommerceapi.exception.UserException;
@@ -8,12 +8,14 @@ import com.rs.ecommerceapi.model.Product;
 import com.rs.ecommerceapi.model.User;
 import com.rs.ecommerceapi.repository.CartItemRepository;
 import com.rs.ecommerceapi.repository.CartRepository;
+import com.rs.ecommerceapi.service.CartItemService;
+import com.rs.ecommerceapi.service.UserService;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
-public class CartItemServiceImpl implements CartItemService{
+public class CartItemServiceImpl implements CartItemService {
     private CartItemRepository cartItemRepository;
     private UserService userService;
     private CartRepository cartRepository;
@@ -39,11 +41,13 @@ public class CartItemServiceImpl implements CartItemService{
         CartItem item = findCartItemById(id);
         User user = userService.findUserById(item.getUserId());
 
-        if(user.getId().equals(userId)) {
-            item.setQuantity(cartItem.getQuantity());
-            item.setPrice((int) (item.getQuantity()*item.getProduct().getPrice()));
-            item.setDiscountedPrice((int) (item.getProduct().getDiscountedPrice()*item.getQuantity()));
+        if(!user.getId().equals(userId)) {
+            throw new UserException("You can't update another users item");
         }
+
+        item.setQuantity(cartItem.getQuantity());
+        item.setPrice((int) (item.getQuantity()*item.getProduct().getPrice()));
+        item.setDiscountedPrice((int) (item.getProduct().getDiscountedPrice()*item.getQuantity()));
 
         return cartItemRepository.save(item);
     }

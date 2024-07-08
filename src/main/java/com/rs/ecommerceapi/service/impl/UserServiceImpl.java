@@ -1,9 +1,10 @@
-package com.rs.ecommerceapi.service;
+package com.rs.ecommerceapi.service.impl;
 
 import com.rs.ecommerceapi.config.JwtProvider;
 import com.rs.ecommerceapi.exception.UserException;
 import com.rs.ecommerceapi.model.User;
 import com.rs.ecommerceapi.repository.UserRepository;
+import com.rs.ecommerceapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -44,10 +44,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.boot</groupId>-->
-<!--			<artifactId>spring-boot-starter-actuator</artifactId>-->
-<!--		</dependency>-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -69,11 +65,6 @@
 			<scope>test</scope>
 		</dependency>
 
-<!--		<dependency>-->
-<!--			<groupId>io.projectreactor</groupId>-->
-<!--			<artifactId>reactor-test</artifactId>-->
-<!--			<scope>test</scope>-->
-<!--		</dependency>-->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
@@ -100,13 +91,6 @@
 			<scope>runtime</scope>
 		</dependency>
 
-
-		<!-- https://mvnrepository.com/artifact/io.swagger.core.v3/swagger-annotations -->
-<!--		<dependency>-->
-<!--			<groupId>io.swagger.core.v3</groupId>-->
-<!--			<artifactId>swagger-annotations</artifactId>-->
-<!--			<version>2.2.22</version>-->
-<!--		</dependency>-->
 		<!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-ui -->
 		<dependency>
 			<groupId>org.springdoc</groupId>
@@ -114,19 +98,30 @@
 			<version>1.7.0</version>
 		</dependency>
 
-		<!--		&lt;!&ndash; https://mvnrepository.com/artifact/jakarta.persistence/jakarta.persistence-api &ndash;&gt;-->
-<!--		<dependency>-->
-<!--			<groupId>jakarta.persistence</groupId>-->
-<!--			<artifactId>jakarta.persistence-api</artifactId>-->
-<!--			<version>3.2.0-M2</version>-->
-<!--		</dependency>-->
-<!--		 &lt;!&ndash; https://mvnrepository.com/artifact/jakarta.validation/jakarta.validation-api &ndash;&gt;-->
-<!--		<dependency>-->
-<!--			<groupId>jakarta.validation</groupId>-->
-<!--			<artifactId>jakarta.validation-api</artifactId>-->
-<!--			<version>3.1.0-M2</version>-->
-<!--		</dependency>-->
-
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-oauth2-client</artifactId>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.5.14</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/fluent-hc -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>fluent-hc</artifactId>
+			<version>4.5.14</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webflux</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.projectreactor.netty</groupId>
+			<artifactId>reactor-netty</artifactId>
+		</dependency>
 
 	</dependencies>
 

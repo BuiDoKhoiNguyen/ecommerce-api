@@ -20,11 +20,11 @@ import java.util.List;
 @Table(name = "orders")
 public class Order {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "order_id")
-    private String OrderId;
+    private String orderId;
 
     @ManyToOne
     private User user;
@@ -59,7 +59,7 @@ public class Order {
 
     public Order(Long id, String orderId, User user, List<OrderItem> orderItems, LocalDateTime orderDate, LocalDateTime deliveryDate, Address shippingAddress, PaymentDetails paymentDetails, double totalPrice, Integer totalDiscountedPrice, Integer discount, String orderStatus, int totalItem, LocalDateTime createAt) {
         this.id = id;
-        OrderId = orderId;
+        this.orderId = orderId;
         this.user = user;
         this.orderItems = orderItems;
         this.orderDate = orderDate;
@@ -83,11 +83,11 @@ public class Order {
     }
 
     public String getOrderId() {
-        return OrderId;
+        return orderId;
     }
 
     public void setOrderId(String orderId) {
-        OrderId = orderId;
+        this.orderId = orderId;
     }
 
     public User getUser() {

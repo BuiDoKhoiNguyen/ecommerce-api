@@ -1,4 +1,4 @@
-package com.rs.ecommerceapi.service;
+package com.rs.ecommerceapi.service.impl;
 
 import com.rs.ecommerceapi.model.User;
 import com.rs.ecommerceapi.repository.UserRepository;
@@ -15,12 +15,9 @@ import java.util.List;
 
 @Service
 public class CustomUserServiceImpl implements UserDetailsService {
-    private final UserRepository userRepository;
-
     @Autowired
-    public CustomUserServiceImpl(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    private UserRepository userRepository;
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

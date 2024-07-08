@@ -8,7 +8,7 @@ import com.rs.ecommerceapi.repository.UserRepository;
 import com.rs.ecommerceapi.request.LoginRequest;
 import com.rs.ecommerceapi.response.AuthResponse;
 import com.rs.ecommerceapi.service.CartService;
-import com.rs.ecommerceapi.service.CustomUserServiceImpl;
+import com.rs.ecommerceapi.service.impl.CustomUserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -78,12 +78,9 @@ public class AuthController {
     public ResponseEntity<AuthResponse> loginUserHandler(@RequestBody LoginRequest loginRequest) throws UserException {
         String username = loginRequest.getEmail();
         String password = loginRequest.getPassword();
-
         Authentication authentication = authenticate(username, password);
         SecurityContextHolder.getContext().setAuthentication(authentication);
-
         String token = jwtProvider.genrateToken(authentication);
-
         AuthResponse authResponse = new AuthResponse();
         authResponse.setJwt(token);
         authResponse.setMessage("Login successfully");
@@ -98,7 +95,7 @@ public class AuthController {
             throw new BadCredentialsException("Invalid Username");
         }
 
-        if(passwordEncoder.matches(password, userDetails.getPassword())) {
+        if(!passwordEncoder.matches(password, userDetails.getPassword())) {
             throw new BadCredentialsException("Invalid Password");
         }
         return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());

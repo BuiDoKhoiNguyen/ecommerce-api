@@ -23,6 +23,7 @@ public class JwtProvider {
     }
 
     public String getEmailFromToken(String jwt){
+        System.out.println(jwt);
         jwt = jwt.substring(7);
 
         Claims claims = Jwts.parser()
@@ -30,7 +31,7 @@ public class JwtProvider {
                 .build()
                 .parseClaimsJws(jwt)
                 .getBody();
-
+        System.out.println(claims);
         String email = String.valueOf(claims.get("email"));
 
         return email;
