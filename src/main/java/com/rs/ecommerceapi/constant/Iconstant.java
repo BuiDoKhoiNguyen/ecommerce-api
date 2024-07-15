@@ -1,11 +1,11 @@
-package com.rs.ecommerceapi.security;
+package com.rs.ecommerceapi.constant;
 
 public interface Iconstant {
     String GOOGLE_CLIENT_ID = "19893606297-4brfjr83ip6ct7hean250kofkkqqmcmn.apps.googleusercontent.com";
 
     String GOOGLE_CLIENT_SECRET = "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";
 
-    String GOOGLE_REDIRECT_URI = "http://localhost:3000/login";
+    String GOOGLE_REDIRECT_URI = "http://localhost:5454/login/oauth2/code/google";
 
     String GOOGLE_GRANT_TYPE = "authorization_code";
 

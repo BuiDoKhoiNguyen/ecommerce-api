@@ -88,6 +88,30 @@ public class AuthController {
         return new ResponseEntity<AuthResponse>(authResponse, HttpStatus.CREATED);
     }
 
+//    @GetMapping("/login/oauth2/code/google")
+//    public ResponseEntity<AuthResponse> loginWithGoogle(@RequestParam String code) throws IOException {
+//        String accessToken = GoogleLogin.getToken(code);
+//        GoogleProfile googleAccount = GoogleLogin.getUserInfo(accessToken);
+//
+//        User user = userRepository.findByEmail(googleAccount.getEmail());
+//        if (user == null) {
+//            user = new User();
+//            user.setEmail(googleAccount.getEmail());
+//            user.setFirstName(googleAccount.getName());
+//            userRepository.save(user);
+//        }
+//
+//        Authentication authentication = new UsernamePasswordAuthenticationToken(user.getEmail(), null, customUserServiceImpl.loadUserByUsername(user.getEmail()).getAuthorities());
+//        SecurityContextHolder.getContext().setAuthentication(authentication);
+//
+//        String token = jwtProvider.genrateToken(authentication);
+//        AuthResponse authResponse = new AuthResponse();
+//        authResponse.setJwt(token);
+//        authResponse.setMessage("Login with Google successful");
+//
+//        return new ResponseEntity<>(authResponse, HttpStatus.OK);
+//    }
+
     private Authentication authenticate(String username, String password) {
         UserDetails userDetails = customUserServiceImpl.loadUserByUsername(username);
 

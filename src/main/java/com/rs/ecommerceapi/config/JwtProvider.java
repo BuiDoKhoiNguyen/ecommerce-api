@@ -1,5 +1,6 @@
 package com.rs.ecommerceapi.config;
 
+import com.rs.ecommerceapi.constant.JwtConstant;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -22,8 +23,7 @@ public class JwtProvider {
          return jwt;
     }
 
-    public String getEmailFromToken(String jwt){
-        System.out.println(jwt);
+    public String getEmailFromToken(String jwt) {
         jwt = jwt.substring(7);
 
         Claims claims = Jwts.parser()
@@ -31,7 +31,6 @@ public class JwtProvider {
                 .build()
                 .parseClaimsJws(jwt)
                 .getBody();
-        System.out.println(claims);
         String email = String.valueOf(claims.get("email"));
 
         return email;
